@@ -2,7 +2,7 @@
 
 In this project I will be setting up a Jenkins pipeline on an AWS ec2 instance. 
 
-
+I will be using this repo as my sample project that I will build and test. [LINK](https://github.com/devopshydclub/vprofile-project/tree/paac)
 1. The first thing that I will do is launch an EC2 ubuntu instance making sure to setup a security group that has inbound rules that allow us to access Jenkins on port 8080. Create an ssh key pair and save the pem file to your machine. 
 
 2. Within user data place this script to setup Jenkins 
@@ -35,6 +35,35 @@ You will be presented with this screen
 5. Finish the setup and install plugins. Create a user admin or continue with the administrator that was created by default. **Make sure oracle jdk plugin is selected along with maven pipeline integration** 
 6. Next I will click on manage jenkins then tools as I have to set my JDK path for JDK 8. ```/usr/lib/jvm/java-1.8.0-openjdk-amd64```
 7. Set MAVEN version and name within Jenkins. 
-8. 
+8. Go to new item and select pipeline. Give a relevant name. 
+9. Next in the configure menu. Go down to pipeline and write the groovy script that grabs the code, builds and then tests. The Jenkinsfile I wrote is in the repo. 
 
+```
+pipeline {
+    agent any
+    stages {
+        stage('Fetch code ') {
+            steps {
+                git branch: 'paac', url : 'https://github.com/devopshydclub/vprofile-project.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+}
+
+
+```
+
+10. The pipeline is now ready to executed.
+
+![pipeline](https://github.com/josiah34/jenkins-pipeline/assets/25124463/17cb8577-f104-4e1e-9818-c69ae40f2879)
 
