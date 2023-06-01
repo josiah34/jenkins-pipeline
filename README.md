@@ -31,3 +31,10 @@ You will be presented with this screen
 ![jenkins-setup](https://github.com/josiah34/jenkins-pipeline/assets/25124463/47b837a7-f199-49ed-b53d-4121822fbb51)
 
 4. SSH into your EC2 via your local terminal using your pem key or via the AWS console. Use this command to obtain your Jenkins administrator password. ```sudo cat /var/lib/jenkins/secrets/initialAdminPassword```
+
+5. Finish the setup and install plugins. Create a user admin or continue with the administrator that was created by default. **Make sure oracle jdk plugin is selected** 
+6. Next I will click on manage jenkins then tools as I have to set my JDK path for JDK 8. ```/usr/lib/jvm/java-1.8.0-openjdk-amd64```
+7. Set MAVEN version and name within Jenkins. 
+8. 
+
+
